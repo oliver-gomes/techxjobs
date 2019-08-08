@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/oliver-gomes/techxjobs#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "cron": "^1.7.1",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
