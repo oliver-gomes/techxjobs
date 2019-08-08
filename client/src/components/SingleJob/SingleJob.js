@@ -62,7 +62,9 @@ export default class SingleJob extends React.Component {
               <div
                 dangerouslySetInnerHTML={{ __html: this.props.job.description }}
               />
-              <a href={this.props.job.url}>Apply Here</a>
+              <a target="_blank" href={this.props.job.url}>
+                Apply Here
+              </a>
             </Modal>
             <span> {this.props.job.company}</span>
             <span style={{ float: "right" }}>
