@@ -1,25 +1,46 @@
 import React from "react";
 import SingleJob from "../SingleJob/SingleJob";
-
+import "./Jobs.css";
+import { Layout, Menu } from "antd";
 import { Typography } from "antd";
+import reactSVG from "../../svg/react-svg.png";
+import angSVG from "../../svg/ang-svg.png";
+import vueSVG from "../../svg/vue-svg.png";
+import { Row, Col } from "antd";
 
-import { Checkbox } from "antd";
-
-import "../../App.css";
+const { Header, Content, Footer } = Layout;
 
 const { Title } = Typography;
 
 export default class Jobs extends React.Component {
   state = {
     checked: false,
-    reactJobs: []
+    reactJobs: [],
+    angularJobs: [],
+    vueJobs: []
   };
 
-  checkChanged = e => {
+  checkReactChanged = e => {
     this.reactFilter();
-    console.log("checked = ", e.target.checked);
+    // console.log("checked = ", e.target.checked);
     this.setState({
-      checked: e.target.checked
+      checked: "react"
+    });
+  };
+
+  checkVueChanged = e => {
+    this.vueFilter();
+    // console.log("checked = ", e.target.checked);
+    this.setState({
+      checked: "vue"
+    });
+  };
+
+  checkAngularChanged = e => {
+    this.angularFilter();
+    // console.log("checked = ", e.target.checked);
+    this.setState({
+      checked: "angular"
     });
   };
 
@@ -33,18 +54,105 @@ export default class Jobs extends React.Component {
       return false;
     });
 
-    console.log("filtered", reactJobs.length);
+    console.log("filtered react", reactJobs.length);
     this.setState({ reactJobs: [...reactJobs] });
+  };
+
+  angularFilter = () => {
+    const angularJobs = this.props.jobs.filter(job => {
+      const jobDesc = job.description.toLowerCase();
+
+      if (jobDesc.includes("angular")) {
+        return true;
+      }
+      return false;
+    });
+
+    console.log("filtered angular", angularJobs.length);
+    this.setState({ angularJobs: [...angularJobs] });
+  };
+  vueFilter = () => {
+    const vueJobs = this.props.jobs.filter(job => {
+      const jobDesc = job.description.toLowerCase();
+
+      if (jobDesc.includes("vue")) {
+        return true;
+      }
+      return false;
+    });
+
+    console.log("filtered vue", vueJobs.length);
+    this.setState({ vueJobs: [...vueJobs] });
   };
 
   render() {
     console.log("length Original", this.props.jobs.length);
     return (
       <div className="jobs">
-        <Title>Entry Level Software Jobs </Title>
-        <Checkbox onChange={this.checkChanged}>React</Checkbox>
-        {this.state.checked
+        <Layout className="layout">
+          <Header>
+            <div className="logo" />
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={["1"]}
+              style={{ lineHeight: "64px" }}
+            >
+              <Menu.Item
+                key="1"
+                onClick={() => {
+                  this.setState({ checked: false });
+                }}
+              >
+                All
+              </Menu.Item>
+              <Menu.Item key="2" onClick={this.checkReactChanged}>
+                React
+              </Menu.Item>
+              <Menu.Item key="3" onClick={this.checkAngularChanged}>
+                Angular
+              </Menu.Item>
+              <Menu.Item key="4" onClick={this.checkVueChanged}>
+                Vue
+              </Menu.Item>
+            </Menu>
+          </Header>
+          <Content style={{ padding: "0 50px" }}>
+            <div style={{ background: "#F0F2F5", padding: 24, minHeight: 200 }}>
+              <Title style={{ paddingTop: "10px" }}>
+                Entry Javascript Jobs
+              </Title>
+              <img src={reactSVG} alt="" height="40" />
+              <img src={angSVG} alt="" height="40" />
+              <img
+                src={vueSVG}
+                alt=""
+                height="28"
+                style={{ marginLeft: "10px" }}
+              />
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              {this.state.checked === "react"
+                ? this.state.reactJobs.length + " React jobs found"
+                : this.state.checked === "angular"
+                ? this.state.angularJobs.length + " Angular jobs found"
+                : this.state.checked === "vue"
+                ? this.state.vueJobs.length + " Vue jobs found"
+                : this.state.checked === false
+                ? this.props.jobs.length + " total jobs found"
+                : this.props.jobs.length + " total jobs found"}
+            </div>
+          </Content>
+        </Layout>
+
+        {this.state.checked === "react"
           ? this.state.reactJobs.map((job, i) => (
+              <SingleJob key={i} job={job} />
+            ))
+          : this.state.checked === "vue"
+          ? this.state.vueJobs.map((job, i) => <SingleJob key={i} job={job} />)
+          : this.state.checked === "angular"
+          ? this.state.angularJobs.map((job, i) => (
               <SingleJob key={i} job={job} />
             ))
           : this.props.jobs.map((job, i) => <SingleJob key={i} job={job} />)}
