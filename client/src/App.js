@@ -1,8 +1,10 @@
 import React from "react";
+
 import "./App.css";
 
 import Jobs from "./components/Jobs/Jobs";
 import "antd/dist/antd.css";
+
 const JOB_API_URL = "http://localhost:3001/jobs";
 
 async function fetchJobs(updateCB) {
