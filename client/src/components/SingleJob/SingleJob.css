@@ -1,3 +1,9 @@
 .job {
   text-align: left;
 }
+
+.apply-btn {
+  border: 1px solid #40A9FF;
+  padding: 8px 5px;
+  border-radius: 10px;
+}

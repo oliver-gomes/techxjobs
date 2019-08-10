@@ -62,7 +62,11 @@ export default class SingleJob extends React.Component {
               <div
                 dangerouslySetInnerHTML={{ __html: this.props.job.description }}
               />
-              <a target="_blank" href={this.props.job.url}>
+              <a
+                target="_blank"
+                className="apply-btn"
+                href={this.props.job.url}
+              >
                 Apply Here
               </a>
             </Modal>
