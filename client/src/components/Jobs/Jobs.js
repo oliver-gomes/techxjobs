@@ -6,6 +6,7 @@ import { Typography } from "antd";
 import reactSVG from "../../svg/react-svg.png";
 import angSVG from "../../svg/ang-svg.png";
 import vueSVG from "../../svg/vue-svg.png";
+import pySVG from "../../svg/python.png";
 import { Row, Col } from "antd";
 
 const { Header, Content, Footer } = Layout;
@@ -17,7 +18,8 @@ export default class Jobs extends React.Component {
     checked: false,
     reactJobs: [],
     angularJobs: [],
-    vueJobs: []
+    vueJobs: [],
+    pythonJobs: []
   };
 
   checkReactChanged = e => {
@@ -44,6 +46,14 @@ export default class Jobs extends React.Component {
     });
   };
 
+  checkPythonChanged = e => {
+    this.pythonFilter();
+    // console.log("checked = ", e.target.checked);
+    this.setState({
+      checked: "python"
+    });
+  };
+
   reactFilter = () => {
     const reactJobs = this.props.jobs.filter(job => {
       const jobDesc = job.description.toLowerCase();
@@ -56,6 +66,20 @@ export default class Jobs extends React.Component {
 
     console.log("filtered react", reactJobs.length);
     this.setState({ reactJobs: [...reactJobs] });
+  };
+
+  pythonFilter = () => {
+    const pythonJobs = this.props.jobs.filter(job => {
+      const jobDesc = job.description.toLowerCase();
+
+      if (jobDesc.includes("python")) {
+        return true;
+      }
+      return false;
+    });
+
+    console.log("filtered python", pythonJobs.length);
+    this.setState({ pythonJobs: [...pythonJobs] });
   };
 
   angularFilter = () => {
@@ -71,6 +95,7 @@ export default class Jobs extends React.Component {
     console.log("filtered angular", angularJobs.length);
     this.setState({ angularJobs: [...angularJobs] });
   };
+
   vueFilter = () => {
     const vueJobs = this.props.jobs.filter(job => {
       const jobDesc = job.description.toLowerCase();
@@ -115,12 +140,15 @@ export default class Jobs extends React.Component {
               <Menu.Item key="4" onClick={this.checkVueChanged}>
                 Vue
               </Menu.Item>
+              <Menu.Item key="5" onClick={this.checkPythonChanged}>
+                Python
+              </Menu.Item>
             </Menu>
           </Header>
           <Content style={{ padding: "0 50px" }}>
             <div style={{ background: "#F0F2F5", padding: 24, minHeight: 200 }}>
               <Title style={{ paddingTop: "10px" }}>
-                Entry Javascript Jobs
+                Entry Software Engineer Jobs
               </Title>
               <img src={reactSVG} alt="" height="40" />
               <img src={angSVG} alt="" height="40" />
@@ -128,6 +156,12 @@ export default class Jobs extends React.Component {
                 src={vueSVG}
                 alt=""
                 height="28"
+                style={{ marginLeft: "10px" }}
+              />
+              <img
+                src={pySVG}
+                alt=""
+                height="35"
                 style={{ marginLeft: "10px" }}
               />
             </div>
@@ -138,6 +172,8 @@ export default class Jobs extends React.Component {
                 ? this.state.angularJobs.length + " Angular jobs found"
                 : this.state.checked === "vue"
                 ? this.state.vueJobs.length + " Vue jobs found"
+                : this.state.checked === "python"
+                ? this.state.pythonJobs.length + " Python jobs found"
                 : this.state.checked === false
                 ? this.props.jobs.length + " total jobs found"
                 : this.props.jobs.length + " total jobs found"}
