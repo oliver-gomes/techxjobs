@@ -7,7 +7,7 @@ import reactSVG from "../../svg/react-svg.png";
 import angSVG from "../../svg/ang-svg.png";
 import vueSVG from "../../svg/vue-svg.png";
 import pySVG from "../../svg/python.png";
-import { Row, Col } from "antd";
+import { Radio } from "antd";
 
 const { Header, Content, Footer } = Layout;
 
@@ -164,6 +164,13 @@ export default class Jobs extends React.Component {
                 height="35"
                 style={{ marginLeft: "10px" }}
               />
+              <Title level={4} style={{ marginTop: "12px" }}>
+                Use this site to give your job search a boost 🚀! <br />
+                Location include U.S, International and Remote 🌎🏠
+                <br />
+                Apply with confident by narrowing down your job search time by
+                only the tech that you are comfortable with 😊
+              </Title>
             </div>
             <div style={{ marginBottom: "10px" }}>
               {this.state.checked === "react"
