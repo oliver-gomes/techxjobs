@@ -25,6 +25,9 @@ async function fetchGithub() {
     resultCount = jobs.length;
     console.log("got", jobs.length);
     onPage++;
+    if (allJobs.length === 300) {
+      resultCount = 0;
+    }
   }
 
   console.log("total", allJobs.length);
