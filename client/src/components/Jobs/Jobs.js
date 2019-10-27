@@ -7,6 +7,8 @@ import reactSVG from "../../svg/react-svg.png";
 import angSVG from "../../svg/ang-svg.png";
 import vueSVG from "../../svg/vue-svg.png";
 import pySVG from "../../svg/python.png";
+import entrySVG from "../../svg/entry-logo.png";
+import githubSVG from "../../svg/GitHub-Mark-Light-64px.png";
 import { Radio } from "antd";
 
 const { Header, Content, Footer } = Layout;
@@ -116,7 +118,26 @@ export default class Jobs extends React.Component {
       <div className="jobs">
         <Layout className="layout">
           <Header>
-            <div className="logo" />
+            <div className="logo" style={{ float: "left" }}>
+              <img src={entrySVG} alt="" height="40" />
+            </div>
+            <div className="logo" style={{ float: "right" }}>
+              <a
+                href="https://github.com/oliver-gomes/techxjobs"
+                target="_blank"
+              >
+                <img
+                  src={githubSVG}
+                  alt=""
+                  height="40"
+                  className="github-btn"
+                />
+              </a>
+              {/* <span style={{ color: "white" }}>
+                {" "}
+                This is open source & would really appreciate a ⭐
+              </span> */}
+            </div>
             <Menu
               theme="dark"
               mode="horizontal"
@@ -150,6 +171,7 @@ export default class Jobs extends React.Component {
               <Title style={{ paddingTop: "10px" }}>
                 Entry Software Engineer Jobs
               </Title>
+
               <img src={reactSVG} alt="" height="40" />
               <img src={angSVG} alt="" height="40" />
               <img
