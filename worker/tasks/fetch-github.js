@@ -1,7 +1,10 @@
 const fetch = require("node-fetch");
 const redis = require("redis");
 
-const client = redis.createClient();
+const REDIS_URL =
+  "redis://h:p251ce1969fe0956308626b62bea4f3a9aa59df59b7a76a90945bddee05c666bf@ec2-34-194-128-174.compute-1.amazonaws.com:31709";
+
+const client = redis.createClient(process.env.REDIS_URL);
 
 const { promisify } = require("util");
 //const getAsync = promisify(client.get).bind(client);
