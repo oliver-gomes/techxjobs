@@ -2,4 +2,4 @@ var CronJob = require("cron").CronJob;
 
 const fetchGithub = require("./tasks/fetch-github");
 
-new CronJob("* * * * *", fetchGithub, null, true, "America/New_York");
+new CronJob("1 * * * * ", fetchGithub, null, true, "America/New_York");
