@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/oliver-gomes/techxjobs/issues"
   },
-  "homepage": "/build",
+  "homepage": "/client/build",
   "dependencies": {
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
