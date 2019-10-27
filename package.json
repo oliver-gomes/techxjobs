@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"cd api && node index.js\" \"cd client && npm start\" \"cd worker && node index.js\"",
-    "heroku-postbuild": "concurrently \"cd api && node index.js\" \"cd client && npm install && npm run build\" \"cd worker && node index.js\""
+    "heroku-postbuild": "concurrently \"cd api && node index.js\" \"cd client && npm install && npm run build\" \"cd worker && node index.js\"\"yarn global add serve && cd client serve -s build\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/oliver-gomes/techxjobs/issues"
   },
-  "homepage": "/client/build",
+  "homepage": "./client/build",
   "dependencies": {
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
